@@ -27,33 +27,9 @@
         });
 
         kof.on("click", "button", function() {
-            var msg = $("#data-msg").val();
-            send(msg);
-        });
-
-        var ws = new WebSocket("ws://kof666.com:1995");
-
-        ws.onopen = function(){
-            console.log("连接成功");
-        };
-
-        ws.onmessage = function(e){
-            console.log("message:" + e.data);
-
-            sendDanmu(e.data);
-        };
-
-        ws.onerror = function(){
-            console.log("error");
-        };
-
-        function send(msg) {
-            ws.send(msg);
-        }
-
-        function sendDanmu(msg) {
-            var dataDanmu = $("#data-danmu");
-            var width = dataDanmu.width(),
+            var msg = $("#data-msg").val(),
+                dataDanmu = $("#data-danmu"),
+                width = dataDanmu.width(),
                 height = dataDanmu.height(),
                 color = $("#data-color").val(),
                 size = $("#data-size").val() + "px",
@@ -74,12 +50,38 @@
                 }()),
                 content = "<span class='" + id + "' style='top:" + top + "px; color:" + color + "; left:" + left + "px; font-size:" + size + ";'>" + msg + "</span>";
 
+            send(content);
+        });
+
+        var ws = new WebSocket("ws://kof666.com:1995");
+
+        ws.onopen = function(){
+            console.log("连接成功");
+        };
+
+        ws.onmessage = function(e){
+            sendDanmu(e.data);
+        };
+
+        ws.onerror = function(){
+            console.log("error");
+        };
+
+        function send(content) {
+            ws.send(content);
+        }
+
+        function sendDanmu(content) {
+            var dataDanmu = $("#data-danmu");
+            var width = dataDanmu.width(),
+                id = $(content).attr('class');
+  
             // append
             dataDanmu.append(content);
 
             // animate
             var w = width * 1.5;
-            $("#data-danmu ." + id).animate({left: "-" + w + "px"}, 6000, function() {
+            $("#data-danmu ." + id).animate({left: "-" + w + "px"}, 8000, function() {
                 $(this).remove();
             });
 
