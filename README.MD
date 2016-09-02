@@ -10,7 +10,7 @@
 
 弹幕是自己编写的 jquery 插件：
 
-[<KOF系列之弹幕插件>](https://github.com/kof97/kof-danmu.git)
+[<弹幕插件>](https://github.com/kof97/kof-danmu.git)
 
 ---
 
