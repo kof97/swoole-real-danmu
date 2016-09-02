@@ -12,6 +12,13 @@
 </head>
 <body>
     <div id="kof"></div>
+
+    <div id="loading">
+        <div class="blocking"></div>
+        <div class="load">
+            <p>connecting...</p>
+        </div>
+    </div>
 </body>
 </html>
 
@@ -58,7 +65,12 @@
         var ws = new WebSocket("ws://kof666.com:1995");
 
         ws.onopen = function(){
-            console.log("连接成功");
+            var load = $("#loading");
+
+            load.find("p").text("连接成功");
+
+            load.fadeOut(1000);
+
         };
 
         ws.onmessage = function(e){
@@ -67,6 +79,13 @@
 
         ws.onerror = function(){
             console.log("error");
+
+            var load = $("#loading");
+
+            setTimeout(function() {
+
+                load.find("p").text("服务器连接失败，等会再来吧 ~")
+            }, 1000);
         };
 
         function send(content) {

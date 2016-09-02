@@ -6,3 +6,7 @@ input { border: solid 1px #CDD7E2; }
 
 #kof { margin: 0 auto; }
 
+#loading { position: absolute; width: 100%; height: 100%; z-index: 111; top: 0; left: 0; }
+#loading .blocking { position: absolute; width: 100%; height: 100%; z-index: 222; background: #eee; opacity: 0.6; }
+#loading .load { position: absolute; top: 50%; width: 100%; z-index: 333; }
+#loading p { text-align: center; font-size: 2em; opacity: 1; }
