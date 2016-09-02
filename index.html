@@ -72,7 +72,6 @@
             content.css("color", "#5DA633");
 
             load.fadeOut(1500);
-
         };
 
         ws.onmessage = function(e){
@@ -85,7 +84,7 @@
             var content = $("#loading").find("p");
 
             setTimeout(function() {
-                content.text("服务器连接失败，等会再来吧 ~");
+                content.text("服务器连接失败，等会再来吧 ~ ~ ~");
                 content.css("color", "#000");
             }, 1000);
         };
@@ -102,7 +101,7 @@
             dataDanmu.append(content);
 
             var w = width * 1.5;
-            $("#data-danmu ." + id).animate({left: "-" + w + "px"}, 8000, function() {
+            $("#data-danmu ." + id).animate({left: "-" + w + "px"}, 6000, function() {
                 $(this).remove();
             });
         }
