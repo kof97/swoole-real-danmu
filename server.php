@@ -12,11 +12,11 @@ $server->set(array(
 ));
 
 $server->on('open', function(swoole_websocket_server $server, $request) {
-    echo "server: handshake success with fd{$request->fd}\n";
+    // echo "server: handshake success with fd{$request->fd}\n";
 });
 
 $server->on('message', function(swoole_websocket_server $server, $frame) {
-    echo "receive from {$frame->fd}: {$frame->data}, opcode:{$frame->opcode}, fin: {$frame->finish}\n";
+    // echo "receive from {$frame->fd}: {$frame->data}, opcode:{$frame->opcode}, fin: {$frame->finish}\n";
     $data = $frame->data;
 
     foreach($server->connections as $fd){
@@ -25,9 +25,33 @@ $server->on('message', function(swoole_websocket_server $server, $frame) {
 });
 
 $server->on('close', function($ser, $fd) {
-    echo "client {$fd} closed\n";
+    // echo "client {$fd} closed\n";
 });
 
+daemonize();
+
 $server->start();
+
+function daemonize()
+{
+    $pid = pcntl_fork();
+    if ($pid == -1) {
+        die("fork(1) failed!\n");
+    } elseif ($pid > 0) {
+        //让由用户启动的进程退出
+        exit(0);
+    }
+
+    //建立一个有别于终端的新session以脱离终端
+    posix_setsid();
+
+    $pid = pcntl_fork();
+    if ($pid == -1) {
+        die("fork(2) failed!\n");
+    } elseif ($pid > 0) {
+        //父进程退出, 剩下子进程成为最终的独立进程
+        exit(0);
+    }
+}
 
 // end of script
