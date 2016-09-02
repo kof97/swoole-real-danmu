@@ -50,6 +50,8 @@
                 }()),
                 content = "<span class='" + id + "' style='top:" + top + "px; color:" + color + "; left:" + left + "px; font-size:" + size + ";'>" + msg + "</span>";
 
+            $("#data-msg").val("");
+
             send(content);
         });
 
@@ -72,20 +74,16 @@
         }
 
         function sendDanmu(content) {
-            var dataDanmu = $("#data-danmu");
-            var width = dataDanmu.width(),
+            var dataDanmu = $("#data-danmu"),
+                width = dataDanmu.width(),
                 id = $(content).attr('class');
   
-            // append
             dataDanmu.append(content);
 
-            // animate
             var w = width * 1.5;
             $("#data-danmu ." + id).animate({left: "-" + w + "px"}, 8000, function() {
                 $(this).remove();
             });
-
-            $("#data-msg").val("");
         }
     });
 </script>
