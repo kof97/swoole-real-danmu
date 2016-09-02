@@ -23,7 +23,7 @@
                 '</div>' + 
                 '<style>' +
                     '#data-danmu { position: relative; overflow: hidden; display:inline-block; width: 100%; height: 100%; box-shadow: 2px 2px1px #888888; border: solid 1px #CDD7E2; }' +
-                    '#data-danmu span { position: absolute; display: inline-block; fon-weight: bold; }' + 
+                    '#data-danmu span { position: absolute; display: inline-block; font-weight: bold; font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; }' + 
                     '#data-send { width: 100%; margin: 2px 0; }' +
                     '#data-send input { height: 1.4em; font-size: 1.2em; margin: 2px 0; vertical-align: middle; }' +
                     '#data-send #data-size { width: 4em; height: 2em; }' +
