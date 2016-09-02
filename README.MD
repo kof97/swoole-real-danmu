@@ -8,9 +8,10 @@
 
 > http://kof666.com/real-danmu/
 
-弹幕是自己编写的 jquery 插件
+弹幕是自己编写的 jquery 插件：
 
 [<KOF 系列之弹幕插件>](https://github.com/kof97/kof-danmu.git)
+
 
 ---
 
