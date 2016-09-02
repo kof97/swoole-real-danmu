@@ -65,11 +65,13 @@
         var ws = new WebSocket("ws://kof666.com:1995");
 
         ws.onopen = function(){
-            var load = $("#loading");
+            var load = $("#loading"),
+                content = load.find("p");
 
-            load.find("p").text("连接成功");
+            content.text("连接成功 ☺");
+            content.css("color", "#5DA633");
 
-            load.fadeOut(1000);
+            load.fadeOut(1500);
 
         };
 
@@ -80,11 +82,11 @@
         ws.onerror = function(){
             console.log("error");
 
-            var load = $("#loading");
+            var content = $("#loading").find("p");
 
             setTimeout(function() {
-
-                load.find("p").text("服务器连接失败，等会再来吧 ~")
+                content.text("服务器连接失败，等会再来吧 ~");
+                content.css("color", "#000");
             }, 1000);
         };
 
