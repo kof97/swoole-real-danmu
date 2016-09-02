@@ -4,13 +4,15 @@
 
 ---
 
-示例：
+在线地址：
 
+> http://kof666.com/real-danmu/
 
+弹幕是自己编写的 jquery 插件
+
+[<KOF 系列之弹幕插件>](https://github.com/kof97/kof-danmu.git)
 
 ---
-
-
 
 PS: 基于 node 的实时弹幕: 
 
