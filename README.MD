@@ -10,7 +10,9 @@
 
 ---
 
-PS: 关于实时弹幕的话请看这个: 
+
+
+PS: 基于 node 的实时弹幕: 
 
 [<直播实时弹幕>](https://github.com/kof97/realtime-danmu.git)
 
