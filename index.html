@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>danmu</title>
+
+    <!--[if lt IE9]> 
+        <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="kof"></div>
+</body>
+</html>
+
+<script src="javascript/jquery-1.9.0.min.js"></script>
+<script src="javascript/jquery.kof.danmu.js"></script>
+<script>
+    $(function() {
+        var kof = $("#kof");
+
+        var k = kof.danmu({
+            width: '700', 
+            height: '300',
+        });
+
+        kof.on("click", "button", function() {
+            var msg = $("#data-msg").val();
+            send(msg);
+        });
+
+        var ws = new WebSocket("ws://kof666.com:1995");
+
+        ws.onopen = function(){
+            console.log("连接成功");
+        };
+
+        ws.onmessage = function(e){
+            console.log("message:" + e.data);
+
+            sendDanmu(e.data);
+        };
+
+        ws.onerror = function(){
+            console.log("error");
+        };
+
+        function send(msg) {
+            ws.send(msg);
+        }
+
+        function sendDanmu(msg) {
+            var dataDanmu = $("#data-danmu");
+            var width = dataDanmu.width(),
+                height = dataDanmu.height(),
+                color = $("#data-color").val(),
+                size = $("#data-size").val() + "px",
+                top = (function() {
+                    var t = Math.random() * height;
+                    return t > height - 30 ? height - 40 : t;
+                }()),
+                left = (function() {
+                    return width + 5;
+                }()),
+                id = (function() {
+                    var text = "";
+                    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                    for ( var i = 0; i < 32; i++ ) {
+                        text += possible.charAt(Math.floor(Math.random() * possible.length));
+                    }
+                    return text;
+                }()),
+                content = "<span class='" + id + "' style='top:" + top + "px; color:" + color + "; left:" + left + "px; font-size:" + size + ";'>" + msg + "</span>";
+
+            // append
+            dataDanmu.append(content);
+
+            // animate
+            var w = width * 1.5;
+            $("#data-danmu ." + id).animate({left: "-" + w + "px"}, 6000, function() {
+                $(this).remove();
+            });
+
+            $("#data-msg").val("");
+        }
+    });
+</script>
